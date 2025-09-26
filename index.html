@@ -608,6 +608,10 @@
                 mensagem: formData.get('mensagem') || 'Nenhuma mensagem adicional'
             };
 
+            // Fechar modal primeiro
+            formularioModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+
             // Criar corpo do email
             const corpoEmail = `Solicitação de Demonstração - Imagibot
 
@@ -622,73 +626,105 @@ ${dados.mensagem}
 ---
 Enviado através do site do Imagibot`;
 
-            // Criar link mailto mais simples e compatível
-            const assunto = `Solicitação de Demonstração - ${dados.nome}`;
-            const mailtoLink = `mailto:imagibot.ifce@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpoEmail)}`;
-            
-            // Criar elemento temporário para abrir o link
-            const link = document.createElement('a');
-            link.href = mailtoLink;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            
-            // Adicionar ao DOM temporariamente e clicar
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Fechar modal e mostrar confirmação
-            formularioModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            
-            // Preparar dados para cópia manual
+            // Preparar dados para cópia
             const dadosParaCopia = `Para: imagibot.ifce@gmail.com
-Assunto: ${assunto}
+Assunto: Solicitação de Demonstração - ${dados.nome}
 
 ${corpoEmail}`;
+
+            // Tentar múltiplas abordagens
+            let emailAberto = false;
             
-            // Tentar copiar para clipboard
-            let copiado = false;
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(dadosParaCopia).then(() => {
-                    copiado = true;
-                    mostrarConfirmacao(dados.nome, true);
-                }).catch(() => {
-                    mostrarConfirmacao(dados.nome, false);
-                });
-            } else {
-                // Fallback para navegadores mais antigos
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = dadosParaCopia;
-                    textArea.style.position = 'fixed';
-                    textArea.style.opacity = '0';
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    copiado = document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                } catch (err) {
-                    copiado = false;
-                }
-                mostrarConfirmacao(dados.nome, copiado);
+            // Método 1: Tentar mailto simples
+            try {
+                const assunto = encodeURIComponent(`Solicitação de Demonstração - ${dados.nome}`);
+                const corpo = encodeURIComponent(corpoEmail);
+                const mailtoUrl = `mailto:imagibot.ifce@gmail.com?subject=${assunto}&body=${corpo}`;
+                
+                // Tentar abrir diretamente
+                window.location.href = mailtoUrl;
+                emailAberto = true;
+            } catch (error) {
+                console.log('Método 1 falhou:', error);
             }
+
+            // Método 2: Usar window.open como fallback
+            if (!emailAberto) {
+                try {
+                    const assunto = encodeURIComponent(`Solicitação de Demonstração - ${dados.nome}`);
+                    const corpo = encodeURIComponent(corpoEmail);
+                    const mailtoUrl = `mailto:imagibot.ifce@gmail.com?subject=${assunto}&body=${corpo}`;
+                    
+                    window.open(mailtoUrl, '_self');
+                    emailAberto = true;
+                } catch (error) {
+                    console.log('Método 2 falhou:', error);
+                }
+            }
+
+            // Sempre tentar copiar para clipboard e mostrar confirmação
+            setTimeout(() => {
+                copiarEMostrarConfirmacao(dados.nome, dadosParaCopia, emailAberto);
+            }, 500);
             
             // Limpar formulário
             this.reset();
         });
         
-        function mostrarConfirmacao(nome, copiado) {
+        function copiarEMostrarConfirmacao(nome, dadosParaCopia, emailTentado) {
+            let copiado = false;
+            
+            // Tentar copiar para clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(dadosParaCopia).then(() => {
+                    copiado = true;
+                    mostrarMensagemFinal(nome, copiado, emailTentado);
+                }).catch(() => {
+                    tentarCopiaLegada(dadosParaCopia, nome, emailTentado);
+                });
+            } else {
+                tentarCopiaLegada(dadosParaCopia, nome, emailTentado);
+            }
+        }
+        
+        function tentarCopiaLegada(dadosParaCopia, nome, emailTentado) {
+            let copiado = false;
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = dadosParaCopia;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                textArea.style.top = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                copiado = document.execCommand('copy');
+                document.body.removeChild(textArea);
+            } catch (err) {
+                console.log('Cópia falhou:', err);
+                copiado = false;
+            }
+            mostrarMensagemFinal(nome, copiado, emailTentado);
+        }
+        
+        function mostrarMensagemFinal(nome, copiado, emailTentado) {
             let mensagem = `✅ Obrigado, ${nome}!\n\n`;
             
-            if (copiado) {
-                mensagem += `📋 Os dados foram copiados para sua área de transferência!\n\n`;
-                mensagem += `📧 Cole em seu cliente de email ou envie para: imagibot.ifce@gmail.com\n\n`;
-            } else {
-                mensagem += `📧 Envie um email para: imagibot.ifce@gmail.com\n`;
-                mensagem += `📝 Assunto: Solicitação de Demonstração - ${nome}\n\n`;
+            if (emailTentado) {
+                mensagem += `📧 Tentamos abrir seu cliente de email automaticamente.\n\n`;
             }
             
-            mensagem += `🤖 Nossa equipe responderá em até 24 horas!`;
+            if (copiado) {
+                mensagem += `📋 DADOS COPIADOS! Cole no seu email:\n\n`;
+                mensagem += `📧 Para: imagibot.ifce@gmail.com\n`;
+                mensagem += `📝 Use Ctrl+V para colar o assunto e mensagem\n\n`;
+            } else {
+                mensagem += `📧 Envie manualmente para: imagibot.ifce@gmail.com\n`;
+                mensagem += `📝 Assunto: Solicitação de Demonstração - ${nome}\n`;
+                mensagem += `💬 Inclua seus dados de contato na mensagem\n\n`;
+            }
+            
+            mensagem += `🤖 Responderemos em até 24 horas!`;
             
             alert(mensagem);
         }
@@ -745,5 +781,5 @@ ${corpoEmail}`;
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98551df5d4246e30',t:'MTc1ODkxNDQxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9855235692ad6e30',t:'MTc1ODkxNDYzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
