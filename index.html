@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagibot - Uma Jornada Imersiva de Introdução à Robótica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .braille-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #e0e7ff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <span class="text-2xl">🤖</span>
+                </div>
+                <h1 class="text-2xl font-bold">Imagibot</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#sobre" class="hover:text-yellow-300 transition-colors">Sobre</a>
+                <a href="#produto" class="hover:text-yellow-300 transition-colors">Produto</a>
+                <a href="#missoes" class="hover:text-yellow-300 transition-colors">Missões</a>
+                <a href="#contato" class="hover:text-yellow-300 transition-colors">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="float-animation mb-8">
+                <div class="w-32 h-32 bg-yellow-400 rounded-full mx-auto flex items-center justify-center text-6xl mb-6">
+                    🤖
+                </div>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Uma Jornada Imersiva de<br>
+                <span class="text-yellow-300">Introdução à Robótica</span>
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+                Robótica educativa inclusiva que estimula a imaginação e o aprendizado através do toque, som e lógica
+            </p>
+            <button class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors shadow-lg">
+                Descubra a Aventura
+            </button>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">O que é o Imagibot?</h3>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        O Imagibot é um kit inovador de robótica educativa pensado para estimular a imaginação, o aprendizado e a inclusão, especialmente voltado para pessoas com deficiência visual.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Mais do que montar peças, é embarcar numa aventura sensorial única — onde o toque, o som e a lógica se entrelaçam para criar experiências que vão muito além do hardware.
+                    </p>
+                    <div class="bg-purple-100 p-6 rounded-lg">
+                        <p class="text-purple-800 font-semibold text-lg">
+                            "Cada desafio é uma missão, cada etapa uma descoberta, e cada habilidade adquirida abre um novo mundo de possibilidades."
+                        </p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl card-hover">
+                        <div class="text-6xl mb-4">🎯</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4">Aprendizado Inclusivo</h4>
+                        <p class="text-gray-600">Transformando conceitos abstratos em experiências palpáveis, divertidas e envolventes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produto Section -->
+    <section id="produto" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">Componentes do Kit</h3>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Robô Principal -->
+                <div class="bg-gradient-to-br from-purple-500 to-blue-600 text-white p-8 rounded-2xl card-hover">
+                    <div class="text-5xl mb-4">🤖</div>
+                    <h4 class="text-2xl font-bold mb-4">Robô Imagibot</h4>
+                    <p class="mb-4">O coração da aventura! Um personagem modular que guia o usuário por desafios e conquistas.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Corpo modular e adaptável</li>
+                        <li>• Sensores e acessórios upgradáveis</li>
+                        <li>• Progressão por missões</li>
+                    </ul>
+                </div>
+                
+                <!-- Tapetes Táteis -->
+                <div class="bg-gradient-to-br from-green-500 to-teal-600 text-white p-8 rounded-2xl card-hover">
+                    <div class="text-5xl mb-4">🤚</div>
+                    <h4 class="text-2xl font-bold mb-4">Tapetes Táteis 10x10</h4>
+                    <p class="mb-4">O "tabuleiro" da aventura com células em braile para orientação espacial.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Letras e números em braile</li>
+                        <li>• Localização e orientação</li>
+                        <li>• Cenários de missão</li>
+                    </ul>
+                </div>
+                
+                <!-- Sistema de Progressão -->
+                <div class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-2xl card-hover">
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h4 class="text-2xl font-bold mb-4">Sistema de Upgrades</h4>
+                    <p class="mb-4">Evolução contínua com novos sensores, ferramentas e habilidades de programação.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Novos sensores e ferramentas</li>
+                        <li>• Bibliotecas de funcionalidades</li>
+                        <li>• Aprendizado progressivo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missões Section -->
+    <section id="missoes" class="py-20 px-4 bg-gray-50 braille-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">Jornada de Aprendizado</h3>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Cada missão foi cuidadosamente elaborada para construir conhecimento de forma incremental
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl mr-6">
+                        🚀
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-gray-800">Desafio 1: Primeiros Passos</h4>
+                        <p class="text-gray-600">Trajeto Básico do Imagibot</p>
+                        <div class="flex items-center mt-2">
+                            <span class="text-yellow-500 text-lg">⭐</span>
+                            <span class="text-gray-500 ml-2 text-sm">Dificuldade: Iniciante</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-blue-800 mb-2">🎯 Objetivo</h5>
+                        <p class="text-blue-700 text-sm">Mover-se em linha reta do ponto A1 até o ponto A10</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-green-800 mb-2">🧠 Habilidades</h5>
+                        <p class="text-green-700 text-sm">Método andar(), noções de sequência e execução de comandos</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple-800 mb-2">🔧 Itens</h5>
+                        <p class="text-purple-700 text-sm">Rodinhas acopladas</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-orange-800 mb-2">📚 Conceito</h5>
+                        <p class="text-orange-700 text-sm">Execução sequencial de comandos e movimentação básica</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para todas as missões -->
+            <div id="missoesModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="sticky top-0 bg-white p-6 border-b flex justify-between items-center">
+                            <h3 class="text-3xl font-bold text-gray-800">Todas as Missões do Imagibot</h3>
+                            <button id="fecharModal" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
+                        </div>
+                        
+                        <div class="p-6 space-y-6">
+                            <!-- Desafio 1 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 1: Trajeto Básico — "Primeiros Passos do Imagibot"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Mover-se em linha reta do ponto A1 até o ponto A10</div>
+                                    <div><strong>🧠 Habilidades:</strong> Método andar(), noções de sequência</div>
+                                    <div><strong>🔧 Itens:</strong> Rodinhas acopladas</div>
+                                    <div><strong>📚 Conceito:</strong> Execução sequencial de comandos</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 2 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 2: Curvas e Contornos — "Aprendendo a Virar"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Navegar do ponto B1 ao B10 realizando curvas</div>
+                                    <div><strong>🧠 Habilidades:</strong> virarEsquerda() e virarDireita()</div>
+                                    <div><strong>🔧 Itens:</strong> Rodinhas + sensor de orientação</div>
+                                    <div><strong>📚 Conceito:</strong> Orientação espacial, controle de direção</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 3 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 3: Desviando Obstáculos — "Imagibot Detetive"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Chegar ao ponto C10 desviando de obstáculos</div>
+                                    <div><strong>🧠 Habilidades:</strong> Sensor ultrasônico, se() então {}</div>
+                                    <div><strong>🔧 Itens:</strong> Sensor de distância acoplado</div>
+                                    <div><strong>📚 Conceito:</strong> Detecção de obstáculos, lógica condicional</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 4 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 4: A Espada Ativa — "Primeiro Combate"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Ativar ataque no ponto D5 ao detectar inimigo</div>
+                                    <div><strong>🧠 Habilidades:</strong> Função atacar(), lógica condicional</div>
+                                    <div><strong>🔧 Itens:</strong> Espada com buzzer</div>
+                                    <div><strong>📚 Conceito:</strong> Funções com parâmetros, detecção de eventos</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 5 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 5: Defesa Inteligente — "Escudo Protetor"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Proteger-se de ataques simulados no ponto E3</div>
+                                    <div><strong>🧠 Habilidades:</strong> ativarEscudo() com sensor tátil</div>
+                                    <div><strong>🔧 Itens:</strong> Escudo com sensor de toque</div>
+                                    <div><strong>📚 Conceito:</strong> Reação a estímulos físicos</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 6 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 6: Missão Autônoma — "Siga a Faixa"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Seguir uma linha preta do ponto F1 até F10</div>
+                                    <div><strong>🧠 Habilidades:</strong> Sensor de linha, enquanto() ou para()</div>
+                                    <div><strong>🔧 Itens:</strong> Sensor de linha no robô</div>
+                                    <div><strong>📚 Conceito:</strong> Laços de repetição, sensoriamento contínuo</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 7 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 7: Tomada de Decisão — "Cruzamento Lógico"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Escolher melhor caminho entre G1, G2 ou G3</div>
+                                    <div><strong>🧠 Habilidades:</strong> se/senão, múltiplas condições</div>
+                                    <div><strong>🔧 Itens:</strong> Dois sensores (luz e distância)</div>
+                                    <div><strong>📚 Conceito:</strong> Tomada de decisão múltipla</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 8 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 8: Loop Infinito — "Patrulha Constante"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Patrulhar entre dois pontos até receber toque</div>
+                                    <div><strong>🧠 Habilidades:</strong> loop(), interrupções com sensores</div>
+                                    <div><strong>🔧 Itens:</strong> Sensor de toque</div>
+                                    <div><strong>📚 Conceito:</strong> Laços indefinidos, interrupções</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 9 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 9: Missão Noturna — "Luz na Escuridão"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Acender LEDs apenas em ambiente escuro</div>
+                                    <div><strong>🧠 Habilidades:</strong> Sensor de luminosidade, lógica booleana</div>
+                                    <div><strong>🔧 Itens:</strong> Sensor LDR + LEDs</div>
+                                    <div><strong>📚 Conceito:</strong> Sensoriamento analógico</div>
+                                </div>
+                            </div>
+
+                            <!-- Desafio 10 -->
+                            <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow bg-gradient-to-r from-purple-50 to-blue-50">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-bold text-gray-800">Desafio 10: A Missão Final — "A Jornada do Herói"</h4>
+                                    <span class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                                    <div><strong>🎯 Objetivo:</strong> Integrar todas as funções aprendidas</div>
+                                    <div><strong>🧠 Habilidades:</strong> Combinação de métodos, lógica avançada</div>
+                                    <div><strong>🔧 Itens:</strong> Todos os itens acoplados</div>
+                                    <div><strong>📚 Conceito:</strong> Projeto final, resolução de problemas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-lg text-gray-600 mb-6">E muito mais aventuras esperando por você!</p>
+                <button id="verMissoes" class="bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-purple-700 transition-colors shadow-lg">
+                    Ver Todas as Missões
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspirações Section -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">Inspirações e Referências</h3>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Livros da Caelum</h4>
+                    <p class="text-gray-600">Estilo lúdico e progressivo de ensinar conceitos complexos</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-4xl mb-4">🎓</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Pesquisa Acadêmica</h4>
+                    <p class="text-gray-600">Desenvolvido pelo Instituto Federal do Ceará - IFCE com base em pesquisas sobre robótica educativa</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Torneio Brasil de Robótica</h4>
+                    <p class="text-gray-600">Desafios práticos que motivam habilidades técnicas e estratégicas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg text-white py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6">Pronto para Começar a Aventura?</h3>
+            <p class="text-xl mb-8">
+                Transforme o aprendizado de robótica em uma experiência inclusiva e emocionante
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="btnDemonstracao" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg">
+                    Solicitar Demonstração
+                </button>
+                <button id="btnMaterial" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-purple-900 transition-colors">
+                    Baixar Material
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Formulário Demonstração -->
+    <div id="formularioModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-white p-6 border-b flex justify-between items-center rounded-t-2xl">
+                    <h3 class="text-2xl font-bold text-gray-800">Solicitar Demonstração</h3>
+                    <button id="fecharFormulario" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
+                </div>
+                
+                <form id="formDemonstracao" class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Nome Completo *</label>
+                        <input type="text" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Email *</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Telefone</label>
+                        <input type="tel" name="telefone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Instituição/Escola</label>
+                        <input type="text" name="instituicao" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Mensagem</label>
+                        <textarea name="mensagem" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 resize-none" placeholder="Conte-nos mais sobre seu interesse no Imagibot..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 transition-colors">
+                        Enviar Solicitação
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-gray-800 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <span class="text-xl">🤖</span>
+                        </div>
+                        <h4 class="text-2xl font-bold">Imagibot</h4>
+                    </div>
+                    <p class="text-gray-300">
+                        Robótica educativa inclusiva que transforma o aprendizado em aventura.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-4">Contato</h5>
+                    <div class="space-y-2 text-gray-300">
+                        <p>📧 imagibot.ifce@gmail.com</p>
+                        <p>📱 (11) 99999-9999</p>
+                        <p>🌐 www.imagibot.com.br</p>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-4">Siga-nos</h5>
+                    <div class="flex space-x-4">
+                        <button class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            f
+                        </button>
+                        <button class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            t
+                        </button>
+                        <button class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                            i
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Imagibot. Todos os direitos reservados. Desenvolvido com ❤️ para a inclusão.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação de entrada dos cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animação aos cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Funcionalidade dos botões principais
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Efeito visual de clique
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Ação para botão "Descubra a Aventura"
+                const buttonText = this.textContent.trim();
+                if (buttonText.includes('Aventura')) {
+                    document.querySelector('#sobre').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Controle do modal de formulário
+        const btnDemonstracao = document.getElementById('btnDemonstracao');
+        const btnMaterial = document.getElementById('btnMaterial');
+        const formularioModal = document.getElementById('formularioModal');
+        const fecharFormularioBtn = document.getElementById('fecharFormulario');
+        const formDemonstracao = document.getElementById('formDemonstracao');
+
+        // Abrir modal de demonstração
+        btnDemonstracao.addEventListener('click', function(e) {
+            e.preventDefault();
+            formularioModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fechar modal
+        fecharFormularioBtn.addEventListener('click', function() {
+            formularioModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar modal clicando fora
+        formularioModal.addEventListener('click', function(e) {
+            if (e.target === formularioModal) {
+                formularioModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Envio do formulário
+        formDemonstracao.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const dados = {
+                nome: formData.get('nome'),
+                email: formData.get('email'),
+                telefone: formData.get('telefone') || 'Não informado',
+                instituicao: formData.get('instituicao') || 'Não informado',
+                mensagem: formData.get('mensagem') || 'Nenhuma mensagem adicional'
+            };
+
+            // Criar corpo do email
+            const corpoEmail = `Solicitação de Demonstração - Imagibot
+
+Nome: ${dados.nome}
+Email: ${dados.email}
+Telefone: ${dados.telefone}
+Instituição: ${dados.instituicao}
+
+Mensagem:
+${dados.mensagem}
+
+---
+Enviado através do site do Imagibot`;
+
+            // Criar link mailto
+            const mailtoLink = `mailto:imagibot.ifce@gmail.com?subject=Solicitação de Demonstração - ${dados.nome}&body=${encodeURIComponent(corpoEmail)}`;
+            
+            // Abrir cliente de email
+            window.open(mailtoLink, '_blank');
+            
+            // Fechar modal e mostrar confirmação
+            formularioModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            alert(`✅ Obrigado, ${dados.nome}!\n\nSeu cliente de email foi aberto com a solicitação pronta para envio.\n\n📧 Destinatário: imagibot.ifce@gmail.com\n\n🤖 Após enviar o email, nossa equipe entrará em contato em até 24 horas!`);
+            
+            // Limpar formulário
+            this.reset();
+        });
+
+        // Botão baixar material
+        btnMaterial.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Efeito visual
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Abrir PDF do Google Drive em nova aba
+            const pdfUrl = 'https://drive.google.com/file/d/1hrZ-V8p5AsxlFsKskKnTNCCWcJgLkkhG/view?usp=sharing';
+            window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+            
+            // Mostrar mensagem de confirmação
+            setTimeout(() => {
+                alert('📚 Material do Imagibot aberto em nova aba!\n\n📄 Você pode visualizar, baixar ou compartilhar o documento.\n\n💡 Se não abriu automaticamente, verifique se o bloqueador de pop-ups está ativo.');
+            }, 500);
+        });
+
+        // Controle do modal de missões
+        const verMissoesBtn = document.getElementById('verMissoes');
+        const missoesModal = document.getElementById('missoesModal');
+        const fecharModalBtn = document.getElementById('fecharModal');
+
+        verMissoesBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            missoesModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        fecharModalBtn.addEventListener('click', function() {
+            missoesModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar modal clicando fora dele
+        missoesModal.addEventListener('click', function(e) {
+            if (e.target === missoesModal) {
+                missoesModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !missoesModal.classList.contains('hidden')) {
+                missoesModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9854a313b60682e8',t:'MTc1ODkwOTM3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
